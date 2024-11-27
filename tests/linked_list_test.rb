@@ -122,4 +122,30 @@ class LinkedListTest < Test::Unit::TestCase
     expected = '( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> nil'
     assert_equal(expected, list.to_s)
   end
+
+  def test_insert_at
+    list = LinkedList.new
+    list.append('dog')
+    list.append('cat')
+    list.append('parrot')
+    list.append('hamster')
+    list.append('snake')
+    list.append('turtle')
+    list.insert_at('cockatrice', 3)
+    expected = 'cockatrice'
+    assert_equal(expected, list.at(3).value)
+  end
+
+  def test_remove_at
+    list = LinkedList.new
+    list.append('dog')
+    list.append('cat')
+    list.append('parrot')
+    list.append('hamster')
+    list.append('snake')
+    list.append('turtle')
+    list.remove_at(3)
+    expected = 'snake'
+    assert_equal(expected, list.at(3).value)
+  end
 end

@@ -109,8 +109,51 @@ class LinkedList
   end
 
   def insert_at(value, index)
+    if size < index
+      append(value)
+      puts 'List too small, value inserted at the end of the list'
+      return
+    end
+
+    if index.zero?
+      prepend(value)
+      return
+    end
+
+    count = 1
+    previous = head
+    current = head.next_node
+
+    until count == index
+      previous = current
+      current = current.next_node
+      count += 1
+    end
+    current = Node.new(value, current)
+    previous.next_node = current
   end
 
-  def remove_at(value, index)
+  def remove_at(index)
+    if size < index
+      puts "List too small, didn't remove anything"
+      return
+    end
+
+    if index.zero?
+      @first_node = nil
+      return
+    end
+
+    count = 1
+    previous = head
+    current = head.next_node
+
+    until count == index
+      previous = current
+      current = current.next_node
+      count += 1
+    end
+    following = current.next_node
+    previous.next_node = following
   end
 end
